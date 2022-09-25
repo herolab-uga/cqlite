@@ -3,6 +3,7 @@ It is a ROS package that implements a CQLite: Coverage-biased Q-Learning Lite fo
 
 ![alt text](/image/cqlite_overview.png "System Overview of CQLite")
 
+### About package repository
 The packgae has 5 different ROS nodes:
 
   - Global frontier point detector node.
