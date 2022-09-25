@@ -70,7 +70,7 @@ For the multi-robot case, there should be a node that merges all the local maps 
 
 ## 4. Nodes
 There are 4 types of nodes; nodes for detecting frontier points in an occupancy grid map, a node for filtering the detected points, a node for assigning the points to the robots, and a node for planning path for robot. The following figure shows the structure:
-![alt text](./cqlite_overveiw.png "overview of CQLite exploration")
+![alt text](./image/cqlite_architecure.png "System Achitecture of CQLite")
 
 ### 4.1. global_frontier_detector
 The ```global_frontier_detector``` node takes an occupancy grid and finds frontier points (which are exploration targets) in it. It publishes the detected points so the filter node can process. 
