@@ -181,6 +181,25 @@ Run the CQLite package after installation on a robot and source bash and /devel/
 
 `` $ roslaunch cqlite cqlite_exploration.launch ``
 
+## Core contributors
+
+* **Ehsan Latif** - PhD student
+
+* **Dr. Ramviyas Parasuraman** - Principal Investigator
+
+
+## Heterogeneous Robotics (HeRoLab)
+
+**Heterogeneous Robotics Lab (HeRoLab), School of Computing, University of Georgia.** http://hero.uga.edu 
+
+For further information, contact Ehsan Latif ehsan.latif@uga.edu or Prof. Ramviyas Parasuraman ramviyas@uga.edu
+
+http://hero.uga.edu/
+
+<p align="center">
+<img src="http://hero.uga.edu/wp-content/uploads/2021/04/herolab_newlogo_whitebg.png" width="300">
+</p>
+
 
 
 
