@@ -189,7 +189,7 @@ Run the CQLite package after installation on a robot and source bash and /devel/
 
 ## Core contributors
 
-* **Ehsan Latif** - PhD student
+* **Ehsan Latif** - PhD Candidate
 
 * **Dr. Ramviyas Parasuraman** - Principal Investigator
 
