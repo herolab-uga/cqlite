@@ -1,5 +1,9 @@
 # CQLite
-It is a ROS package that implements a CQLite: Coverage-biased Q-Learning Lite for Efficient Multi-Robot Exploration algorithm for mobile robots. It uses occupancy girds as a map representation.The packgae has 5 different ROS nodes:
+It is a ROS package that implements a CQLite: Coverage-biased Q-Learning Lite for Efficient Multi-Robot Exploration algorithm for mobile robots. It uses occupancy girds as a map representation. The following figure shows teh oevrview of CQLite exploration:
+
+![alt text](/image/cqlite_overview.png "System Overview of CQLite")
+
+The packgae has 5 different ROS nodes:
 
   - Global frontier point detector node.
   
@@ -69,8 +73,9 @@ Each robot should have a local map generated from the [gmapping](http://wiki.ros
 For the multi-robot case, there should be a node that merges all the local maps into one global map. You can use [this](http://wiki.ros.org/multirobot_map_merge) package.
 
 ## 4. Nodes
-There are 4 types of nodes; nodes for detecting frontier points in an occupancy grid map, a node for filtering the detected points, a node for assigning the points to the robots, and a node for planning path for robot. The following figure shows the structure:
-![alt text](./image/cqlite_architecure.png "System Achitecture of CQLite")
+There are 4 types of nodes; nodes for detecting frontier points in an occupancy grid map, a node for filtering the detected points, a node for assigning the points to the robots, and a node for planning path for robot. The following figure shows the syste, arcitecture of CQLite:
+
+![alt text](/image/cqlite_architecture.png "System Achitecture of CQLite")
 
 ### 4.1. global_frontier_detector
 The ```global_frontier_detector``` node takes an occupancy grid and finds frontier points (which are exploration targets) in it. It publishes the detected points so the filter node can process. 
