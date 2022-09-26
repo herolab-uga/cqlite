@@ -187,7 +187,7 @@ This node recieve target exploration goals, which are the filtered frontier poin
 The assigner node does not publish anything. It sends the assigned point to the ```move_base``` using Actionlib.
 
 ## 5. Launch
-Run the CQLite package after installation on a robot and source bash and /devel/setuup.sh file:
+Run the CQLite package after installation on a robot and source bash and /devel/setup.bash file:
 
 `` $ roslaunch cqlite cqlite_exploration.launch ``
 
