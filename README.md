@@ -1,5 +1,9 @@
 # CQLite
-It is a ROS package that implements a CQLite: Coverage-biased Q-Learning Lite for Efficient Multi-Robot Exploration algorithm for mobile robots. It uses occupancy girds as a map representation. The following figure shows teh oevrview of CQLite exploration:
+It is a ROS package that implements a CQLite: Coverage-biased Q-Learning Lite for Efficient Multi-Robot Exploration algorithm for mobile robots. It uses occupancy grid as a map representation. 
+
+More information at: https://hero.uga.edu/research/cqlite/ 
+
+The following figure shows the oevrview of CQLite exploration:
 
 ![alt text](/image/cqlite_overview.png "System Overview of CQLite")
 
@@ -17,18 +21,18 @@ The packgae has 5 different ROS nodes:
   - opencv-based frontier detector node.
 
 ## 1. Requirements
-The package has been tested on both ROS Noetic and ROS Melodic for turtlebot3. The following requirements are needed before installing the package:
+The package has been tested on both ROS Noetic and ROS Melodic for both simulated and hardware Turtlebot3 robot (burger). The following requirements are needed before installing the package:
 
 1- You should have installed a ROS distribution (indigo or later. Recommended is either noetic or melodic).
 
 2- Created a workspace.
 
-3- Installed the "gmapping" ROS package: on PC and each robot, as:
+3- Install the "gmapping" ROS package: on PC and each robot, as:
 
 ```sh
 $ sudo apt-get install ros-noetic-gmapping
 ```
-4- Install ROS navigation stack. You can do that with the following command (assuming Ubuntu, ROS Kinetic):
+4- Install the ROS navigation stack. You can do that with the following command (assuming Ubuntu, ROS Kinetic):
 ```sh
 $ sudo apt-get install ros-noetic-navigation
 ```
@@ -49,7 +53,7 @@ $ sudo apt-get install python-numpy
 $ sudo apt-get install python-scikits-learn
 ```
 ## 2. Installation
-Download the package and place it inside the ```/src``` folder in turtlebot's workspace. And then compile using ```catkin_make```.
+Download the package and place it inside the ```/src``` folder of your ROS workspace. And then compile using ```catkin_make```.
 
 ## 3. Setting Up Your Robots
 This package provides an exploration strategy for cooperative robot. However, for it to work, you should have set your robots ready using the [navigation stack](http://wiki.ros.org/navigation). Additionally, the robots must be set and prepared as follows.
@@ -74,7 +78,7 @@ Each robot should have a local map generated from the [gmapping](http://wiki.ros
 For the multi-robot case, there should be a node that merges all the local maps into one global map. You can use [this](http://wiki.ros.org/multirobot_map_merge) package.
 
 ## 4. Nodes
-There are 4 types of nodes; nodes for detecting frontier points in an occupancy grid map, a node for filtering the detected points, a node for assigning the points to the robots, and a node for planning path for robot. The following figure shows the syste, arcitecture of CQLite:
+There are 4 types of nodes; nodes for detecting frontier points in an occupancy grid map, a node for filtering the detected points, a node for assigning the points to the robots, and a node for planning path for robot. The following figure shows the system arcitecture of CQLite:
 
 ![alt text](/image/cqlite_architecture.png "System Achitecture of CQLite")
 
@@ -115,7 +119,7 @@ All detectors will be publishing detected frontier points on the same topic (```
 ### 4.3. frontier_opencv_detector
 This node is another frontier detector, but it is not based on CQLite. This node uses OpenCV tools to detect frontier points. It is intended to be run alone, and only one instance should be run.
 
-Originally this node was implemented for comparison against the standard frontier detectors. Running this node along side the CQLite detectors (local and global) may enhance the speed of frotiner points detection.
+Originally this node was implemented for comparison against the standard frontier detectors. Running this node along side the CQLite detectors (local and global) may enhance the speed of frontier points detection.
 
 #### 4.3.1. Parameters
  - ```~map_topic``` (string, default: "/tb3_0/map"): This parameter defines the topic name on which the node will recieve the map.
@@ -124,12 +128,12 @@ Originally this node was implemented for comparison against the standard frontie
  - The map (Topic name is defined by the ```~map_topic``` parameter) ([nav_msgs/OccupancyGrid](http://docs.ros.org/api/nav_msgs/html/msg/OccupancyGrid.html))
 
 #### 4.3.3. Published Topics
- - ```detected_points``` ([geometry_msgs/PointStamped Message](http://docs.ros.org/api/geometry_msgs/html/msg/PointStamped.html)): The topic on which the node publishes detected frontier points.
+ - ```detected_points``` ([geometry_msgs/PointStamped Message](http://docs.ros.org/api/geometry_msgs/html/msg/PointStamped.html)): The topic on which the node publishes the detected frontier points.
 
-- ```shapes``` ([visualization_msgs/Marker Message](http://docs.ros.org/api/visualization_msgs/html/msg/Marker.html)): On this topic, the node publishes detected points to be visualized using Rviz.
+- ```shapes``` ([visualization_msgs/Marker Message](http://docs.ros.org/api/visualization_msgs/html/msg/Marker.html)): On this topic, the node publishes the detected points to be visualized using Rviz.
 
 ### 4.4. CQLite Filter
-The filter nodes receives the detected frontier points from all the detectors, filters the points, and passes them to the assigner node to command the robots. Filtration includes the delection of old and invalid points, and it also dicards redundant points.
+The filter nodes receives the detected frontier points from all the detectors, filters the points, and passes them to the assigner node to command the robots. Filteration includes the delection of old and invalid points, and it also dicards redundant points.
 
 #### 4.4.1. Parameters
  - ```~map_topic``` (string, default: "/tb3_0/map"): This parameter defines the topic name on which the node will recieve the map. The map is used to know which points are no longer frontier points (old points).
@@ -162,11 +166,11 @@ This node recieve target exploration goals, which are the filtered frontier poin
 - ```~map_topic``` (string, default: "/robot_1/map"): This parameter defines the topic name on which the node will recieve the map. In the single robot case, this topic should be set to the map topic of the robot. In the multi-robot case, this topic must be set to global merged map.
  - ```~info_radius```(float, default: 1.0): The information radius used in calculating the information gain of frontier points.
   
- - ```~info_multiplier```(float, default: 3.0): The unit is meter. This parameter is used to give importance to information gain of a frontier point over the cost (expected travel distance to a frontier point).
+ - ```~info_multiplier```(float, default: 3.0): The unit is meters. This parameter is used to give importance to information gain of a frontier point over the cost (expected travel distance to a frontier point).
   
-- ```~hysteresis_radius```(float, default: 3.0): The unit is meter. This parameter defines the hysteresis radius.
+- ```~hysteresis_radius```(float, default: 3.0): The unit is meters. This parameter defines the hysteresis radius.
 
-- ```~hysteresis_gain```(float, default: 2.0): The unit is meter. This parameter defines the hysteresis gain.
+- ```~hysteresis_gain```(float, default: 2.0): The unit is metesr. This parameter defines the hysteresis gain.
  
 - ```~frontiers_topic``` (string, default: "/filtered_points"): The topic on which the assigner node receives filtered frontier points.
 
@@ -180,7 +184,7 @@ This node recieve target exploration goals, which are the filtered frontier poin
 - Filtered frontier points topic (Topic name is defined by the ```~frontiers_topic``` parameter)  ([PointArray](./msg/PointArray.msg)).
 
 #### 4.5.3. Published Topics
-The assigner node does not publish anything. It sends the assinged point to the ```move_base``` using Actionlib.
+The assigner node does not publish anything. It sends the assigned point to the ```move_base``` using Actionlib.
 
 ## 5. Launch
 Run the CQLite package after installation on a robot and source bash and /devel/setuup.sh file:
@@ -191,14 +195,14 @@ Run the CQLite package after installation on a robot and source bash and /devel/
 
 * **Ehsan Latif** - PhD Candidate
 
-* **Dr. Ramviyas Parasuraman** - Principal Investigator
+* **Dr. Ramviyas Parasuraman** - Lab Director
 
 
 ## Heterogeneous Robotics (HeRoLab)
 
-**Heterogeneous Robotics Lab (HeRoLab), School of Computing, University of Georgia.** http://hero.uga.edu 
+**Heterogeneous Robotics Lab (HeRoLab), School of Computing, University of Georgia.** 
 
-For further information, contact Ehsan Latif ehsan.latif@uga.edu or Prof. Ramviyas Parasuraman ramviyas@uga.edu
+For further information, contact Ehsan Latif ehsan.latif@uga.edu or Dr. Ramviyas Parasuraman ramviyas@uga.edu
 
 http://hero.uga.edu/
 
