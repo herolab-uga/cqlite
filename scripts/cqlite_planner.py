@@ -24,7 +24,7 @@ from geometry_msgs.msg import Twist, Pose, PoseStamped
 import rospy
 import copy
 
-
+# initialization
 path = Path()
 trajectory = []
 x = y = theta = 0.0
@@ -54,6 +54,7 @@ SIMILARITY_THRESHOLD = 0.1
 SAFETY_OFFSET = 5    # number of pixels away from the wall the robot should remain
 ALGORITHM = "SARSOP-POMDP" ##POMDP, SARSOP-POMDP
 
+## robot node
 class Node:
     def __init__(self, x, y, theta=0.0, parent=None):
         self.x = x
