@@ -1,7 +1,6 @@
 # CQLite
 It is a ROS package that implements a CQLite: Coverage-biased Q-Learning Lite for Efficient Multi-Robot Exploration algorithm for mobile robots. It uses occupancy grid as a map representation. 
 
-More information at: https://hero.uga.edu/research/cqlite/ 
 
 The following figure shows the oevrview of CQLite exploration:
 
