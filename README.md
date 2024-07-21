@@ -1,10 +1,22 @@
 # CQLite
-It is a ROS package that implements a CQLite: Coverage-biased Q-Learning Lite for Efficient Multi-Robot Exploration algorithm for mobile robots. It uses occupancy grid as a map representation. 
+This repository contains the ROS package that implements the works from the algorithm "CQLite: Coverage-biased Q-Learning Lite for Efficient Multi-Robot Exploration" for mobile robots. It uses the occupancy grid as a map representation. 
 
-
-The following figure shows the oevrview of CQLite exploration:
+The following figure shows the view of CQLite exploration:
 
 ![alt text](/image/cqlite_overview.png "System Overview of CQLite")
+
+
+# Publication/Citation
+If you use this work, please cite our paper:
+Latif E, Parasuraman R. Communication-efficient multi-robot exploration using coverage-biased distributed q-learning. IEEE Robotics and Automation Letters. 2024 Jan 24.
+
+IEEE Published version: https://ieeexplore.ieee.org/abstract/document/10413563 
+Preprint available at https://arxiv.org/abs/2307.00500 
+
+# Experiment Demonstration Video
+
+[![Experiment Demo](https://img.youtube.com/vi/n3unL1nuieQ/0.jpg)](https://www.youtube.com/watch?v=n3unL1nuieQ)
+
 
 ### About package repository
 The packgae has 5 different ROS nodes:
@@ -201,12 +213,12 @@ Run the CQLite package after installation on a robot and source bash and /devel/
 
 **Heterogeneous Robotics Lab (HeRoLab), School of Computing, University of Georgia.** 
 
-For further information, contact Ehsan Latif ehsan.latif@uga.edu or Dr. Ramviyas Parasuraman ramviyas@uga.edu
+For further information, contact Dr. Ramviyas Parasuraman ramviyas@uga.edu
 
-http://hero.uga.edu/
+https://hero.uga.edu/
 
 <p align="center">
-<img src="http://hero.uga.edu/wp-content/uploads/2021/04/herolab_newlogo_whitebg.png" width="300">
+<img src="https://herolab.org/wp-content/uploads/2021/04/herolab_newlogo_whitebg.png" width="300">
 </p>
 
 
